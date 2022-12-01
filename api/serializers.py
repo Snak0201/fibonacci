@@ -1,11 +1,11 @@
-from rest_framework import serializers
+from rest_framework.serializers import IntegerField, Serializer
 from rest_framework.exceptions import ValidationError
 
-class FibonacciSerializer(serializers.Serializer):
-    n = serializers.CharField(max_length=10)
+class FibonacciSerializer(Serializer):
+    n = IntegerField()
     
     def validate_n(self, n):
-        n = int(n)
+        """nについてバリデーションする"""
         if n <= 0:
-            raise ValidationError("request n is not positive number", 400)
+            raise ValidationError("正の整数を入力してください。")
         return n

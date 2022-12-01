@@ -25,5 +25,5 @@ class FibonacciAPIView(APIView):
         serializer = serializers.FibonacciSerializer(data={"n": request.query_params.get("n")})
         serializer.is_valid(raise_exception=True)
         n = serializer.data["n"]
-        fibonacci = self.fibonacci(int(n))
+        fibonacci = self.fibonacci(n)
         return Response({"result": fibonacci}, status=status.HTTP_200_OK)
