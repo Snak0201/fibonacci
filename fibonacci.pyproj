@@ -4,6 +4,7 @@
     <Name>fibonacci</Name>
     <RootNamespace>fibonacci</RootNamespace>
     <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <TestFramework>unittest</TestFramework>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -33,6 +34,9 @@
     <Compile Include="api\admin.py" />
     <Compile Include="api\apps.py" />
     <Compile Include="api\migrations\__init__.py" />
+    <Compile Include="api\serializers.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="api\tests.py" />
     <Compile Include="api\apis.py" />
     <Compile Include="api\urls.py">
