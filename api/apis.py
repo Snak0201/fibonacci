@@ -14,7 +14,7 @@ class FibonacciAPIView(APIView):
         fib = 1
         
         for _ in range(n-2):
-            fib_prev, fib = fib, fib+fib_prev
+            fib_prev, fib = fib, fib + fib_prev
         
         return fib
     
