@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+from . import serializers
 
 
 class FibonacciAPIView(APIView):
@@ -21,6 +22,8 @@ class FibonacciAPIView(APIView):
     def get(self, request):
         """GETレスポンス"""
         
-        n = int(request.query_params.get("n"))
+        serializer = serializers.FibonacciSerializer(data={"n": request.query_params.get("n")})
+        serializer.is_valid(raise_exception=True)
+        n = serializer.data["n"]
         fibonacci = self.fibonacci(n)
         return Response({"result": fibonacci}, status=status.HTTP_200_OK)
