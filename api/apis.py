@@ -4,7 +4,7 @@ from rest_framework import status
 
 
 class FibonacciAPIView(APIView):
-    def fibonacci(self, n:int)->int:
+    def fibonacci(self, n:int) -> int:
         """フィボナッチ数列のn番目を返す"""
         
         if n == 1:
