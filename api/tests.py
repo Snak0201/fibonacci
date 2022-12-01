@@ -8,7 +8,14 @@ Replace this with more appropriate tests for your application.
 from django.test import TestCase
 
 class FibonacciAPIViewTest(TestCase):
-    """FibonacciAPIViewのテスト"""
+    """
+    FibonacciAPIViewのテスト
+    
+    n=1, n=2の場合が特殊で、resultは1となる
+    n=3, n=7の場合を通常のデータとして考える
+    n=99の場合を計算量の多いデータとして考える
+    
+    """
     
     # 正常系レスポンステスト
     def test_get_n1_response_ok(self):
@@ -21,8 +28,13 @@ class FibonacciAPIViewTest(TestCase):
         response = self.client.get("/fib?n=2")
         self.assertEqual(response.status_code, 200)
 
+    def test_get_n3_response_ok(self):
+        """通常1: fib?n=3 はHTTP-200を返す"""
+        response = self.client.get("/fib?n=3")
+        self.assertEqual(response.status_code, 200)
+
     def test_get_n7_response_ok(self):
-        """通常: fib?n=7 はHTTP-200を返す"""
+        """通常2: fib?n=7 はHTTP-200を返す"""
         response = self.client.get("/fib?n=7")
         self.assertEqual(response.status_code, 200)
     
@@ -43,9 +55,15 @@ class FibonacciAPIViewTest(TestCase):
         response = self.client.get("/fib?n=2")
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.data["result"], 1)
+    
+    def test_get_n3_result_correct(self):
+        """通常1: fib?n=3 の答えが正しい"""
+        response = self.client.get("/fib?n=3")
+        self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.data["result"], 2)
 
     def test_get_n7_result_correct(self):
-        """通常: fib?n=7 の答えが正しい"""
+        """通常2: fib?n=7 の答えが正しい"""
         response = self.client.get("/fib?n=7")
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.data["result"], 13)
