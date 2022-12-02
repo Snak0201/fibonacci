@@ -25,7 +25,7 @@ SECRET_KEY = "566ec652-867f-44bb-897f-3bb6b664fb17"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['snak.pythonanywhere.com', 'localhost']
+ALLOWED_HOSTS = ["snak.pythonanywhere.com", "localhost"]
 
 # Application references
 # https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-INSTALLED_APPS
