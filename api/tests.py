@@ -102,6 +102,30 @@ class FibonacciAPIViewTest(TestCase):
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.data["result"], 5)
    
+    # 混合系: n に全角数字が指定されている
+    
+    def test_get_n_7_zenkaku_response(self):
+        """GET /fib?n=７ で200を返す（全角数字: 7と同じ）"""
+        response = self.client.get("/fib?n=７")
+        self.assertEqual(response.status_code, 200)
+        
+    def test_get_n_7_zenkaku_result(self):
+        """GET /fib?n=７ で答えが正しい（全角数字: 7と同じ）"""
+        response = self.client.get("/fib?n=７")
+        self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.data["result"], 13)
+
+    def test_get_n_11_zenhankaku_response(self):
+        """GET /fib?n=１1 で200を返す（全角数字: 11と同じ）"""
+        response = self.client.get("/fib?n=１1")
+        self.assertEqual(response.status_code, 200)
+        
+    def test_get_n_11_zenhankaku_result(self):
+        """GET /fib?n=１1 で答えが正しい（全角数字: 11と同じ）"""
+        response = self.client.get("/fib?n=１1")
+        self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.data["result"], 89)        
+   
     # 異常系: n が負のとき
     def test_get_n_minus_response(self):
         """GET /fib?n=-2 で400を返す"""
