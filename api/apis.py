@@ -6,7 +6,25 @@ from . import serializers
 
 class FibonacciAPIView(APIView):
     def fibonacci(self, n:int) -> int:
-        """フィボナッチ数列のn番目を返す"""
+        """フィボナッチ数列の n 番目を返す
+        
+        Parameter
+        -----
+        n: int
+            フィボナッチ数列の何番目をとってくるか指定する
+        
+        Return
+        -----
+        fib: int
+            フィボナッチ数列の n 番目の値
+        
+        Example
+        -----
+        >>> fibonacci(1)
+        1
+        >>> fibonacci(4)
+        3
+        """
         
         if n == 1:
             return n
